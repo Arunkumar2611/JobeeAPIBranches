@@ -1,0 +1,17 @@
+{
+    "title": "Software Engineer",
+    "slug": "software-engineer",
+    "description": "We are looking for a skilled software engineer to join our team.",
+    "email": "example@email.com",
+    "address": "651 Rr 2, Oquawka, IL, 61469",
+    "company": "TechCo Inc.",
+    "industry": ["Information Technology"],
+    "jobType": "Permanent",
+    "minEducation": "Bachelore",
+    "positions": 2,
+    "experince": "2 Year - 5 Years",
+    "salary": 80000,
+    "postingDate": "2023-09-28T00:00:00.000Z",
+    "lastDate": "2023-10-05T00:00:00.000Z",
+    "applicantsApplied": []
+}
