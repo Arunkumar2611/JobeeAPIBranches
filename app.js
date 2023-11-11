@@ -8,7 +8,13 @@ const errorMiddleware = require('./middlewares/error.js')
 const cookieParser = require('cookie-parser')
 
 //Importing all routes
+const jobs = require('./routes/jobs.js')
 const auth = require('./routes/auth.js')
+const user = require('./routes/user.js')
+
+app.use('/api/v1', jobs)
+app.use('/api/v1', auth)
+app.use('/api/v1', user)
 
 // Setting up config.env file variables
 
@@ -19,12 +25,12 @@ connectDatabase()
 
 // Setup body-parser
 
-// app.use(express.json())
+app.use(express.json())
 // app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Set cookie parser
-app.use(cookieParser)
+app.use(cookieParser())
 
 
 // creating own middleware
@@ -38,12 +44,6 @@ const middleware = (req, res, next) => {
 }
 
 app.use(middleware)
-
-// importing all routes
-
-const jobs = require('./routes/jobs')
-app.use('/api/v1', jobs)
-app.use('/api/v1', auth)
 
 // Middleware to handle errros
 app.use(errorMiddleware)
