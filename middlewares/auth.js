@@ -4,7 +4,6 @@ const catchAsyncErrors = require('../middlewares/catchAsyncErrors')
 const ErrorHandler = require('../utils/errorHandler')
 
 //Check if the user is authenticated or not
-
 exports.isAuthenticatedUser = catchAsyncErrors(async (req,res,next) => {
 let token
 let authReq = req.headers.authorization;
@@ -22,7 +21,6 @@ req.user = await User.findById(decoded.id)
 next()
 
 })
-
 
 //handling users roles
 exports.authorizeRoles = (...roles) => {

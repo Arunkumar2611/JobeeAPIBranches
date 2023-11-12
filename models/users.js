@@ -39,20 +39,20 @@ const userSchema = new mongoose.Schema({
     resetPasswordExpire : Date
 })
 
+// Encrypting Password before saving to DB.
+userSchema.pre('save', async function(next) {
+    this.password = await bcrypt.hash(this.password, 10);
+    next();
+});
 
-// Encrypting Password before  saving to DB.
 
-userSchema.pre('save', async function(next){
-    this.passwword = await bcrypt.hash(this.passwword, 10)
-})
 //Return JSON WEB TOKEN
 userSchema.methods.getJwtToken = function(){  
     return jwt.sign({id : this._id}, process.env.JWT_SECRET,{
-
         expiresIn : process.env.JWT_EXPIRES_TIME})
     }
-// Compare user password in database password
 
+// Compare user password in database password
 userSchema.methods.comparePassword = async function(enterPassword){
     return await bcrypt.compare(enterPassword, this.password)
 }
@@ -72,6 +72,4 @@ userSchema.methods.getResetPasswordToken = function(){
     return resetToken
 }
 
-
 module.exports = mongoose.model('User', userSchema)
-

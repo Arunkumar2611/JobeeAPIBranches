@@ -1,14 +1,13 @@
 const User = require('../models/users')
-
 const catchAsysncErrors = require('../middlewares/catchAsyncErrors')
- const ErrorHandler = require('../utils/errorHandler')
- const sendToken = require('../utils/jwtToken')
+const ErrorHandler = require('../utils/errorHandler')
+const sendToken = require('../utils/jwtToken')
 const sendEmail = require('../utils/sendEmails')
-// Register a new user = > /api/v1/register
 
+// Register a new user = > /api/v1/register
 exports.registerUser = async (req, res, next) => {
+    // console.log("hello register user")
     const { name, email, password, role } = req.body
-    // console.log(req.body)
     // console.log(`Name ${name}, password ${password}, email ${email}, role ${role}`)
     const user = await User.create({
         name,
@@ -44,8 +43,7 @@ exports.loginUser = catchAsysncErrors(async(req, res, next) =>{
     if(!isPasswordMatched){
         return next (new ErrorHandler('Invalid Email or Password', 401))
     }
-
-   
+    
     sendToken(user,200,res)
 
 })
